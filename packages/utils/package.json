@@ -1,0 +1,11 @@
+{
+  "name": "@110x/utils",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "build": "tsc index.ts --skipLibCheck --outDir dist"
+  }
+}
