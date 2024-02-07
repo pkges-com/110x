@@ -1,24 +1,14 @@
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import '../app/globals.css';
 import SideNav from './components/SideNav';
+import Header from './components/Header';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] w-[100vw]">
+    <div className="main-layout p-8 w-[100vw]">
+      <Header />
       <SideNav />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Outlet />
     </div>
   );
 }
