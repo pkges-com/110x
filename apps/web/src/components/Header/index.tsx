@@ -9,7 +9,7 @@ export default function Header() {
       className="flex flex-col min-h-16 items-center"
     >
       <h1 className="m-0 text-2xl font-bold self-start">
-        110x 🚀 -{nav?.title ?? ' Welcome'}
+        110x 🚀 - {nav?.title ?? ' Welcome'}
       </h1>
       <div className="w-full py-6">
         <div className="w-full h-[1px] bg-slate-100" />
