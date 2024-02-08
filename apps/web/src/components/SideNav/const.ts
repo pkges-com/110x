@@ -1,17 +1,18 @@
-import { LuUsers2, LuArchive } from 'react-icons/lu';
+import { IoCogOutline } from 'react-icons/io5';
+import { TbActivity } from 'react-icons/tb';
 
 import { NavProps } from '@/components/ui/nav';
 import { routes } from '@/router/const';
 
 export const tabs: NavProps['links'] = [
   {
-    title: 'Home',
-    icon: LuUsers2,
+    title: 'Dashboard',
+    icon: TbActivity,
     path: routes.Home,
   },
   {
     title: 'Settings',
-    icon: LuArchive,
+    icon: IoCogOutline,
     path: routes.Settings,
   },
 ];
