@@ -9,7 +9,7 @@ export default function Settings({ ...props }: SettingsProps) {
   return (
     <Page {...props}>
       <Tabs defaultValue={settingsTabs[0].value}>
-        <TabsList className="flex w-full max-w-[400px] m-auto">
+        <TabsList className="flex w-full max-w-[400px]">
           {settingsTabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
