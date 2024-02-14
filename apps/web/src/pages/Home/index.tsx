@@ -1,6 +1,7 @@
 import Page from '@/components/Page';
 import emptyState from '@/assets/empty-state.svg';
 import { Link } from 'react-router-dom';
+import { useMetricStats } from './hooks';
 
 interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,9 +26,13 @@ const EmptyState = () => (
 );
 
 export default function Home({ ...props }: HomeProps) {
+  const { data, isLoading, error } = useMetricStats();
+
   return (
     <Page {...props}>
-      <EmptyState />
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {error.message}</div>}
+      {data && data.length === 0 && <EmptyState />}
     </Page>
   );
 }
