@@ -3,7 +3,7 @@ import {
   publishMetrics as sendMetricsToServer,
   HttpStatusCodes,
 } from '@shared/utils/http';
-import { Actions } from '../../enums';
+import { Actions, excludedUrls } from '../../enums';
 
 const initialMetrics = {
   active: false,
@@ -19,6 +19,15 @@ const globalState = {
   metrics: initialMetrics,
 };
 
+(() => {
+  chrome.storage.sync.get('state').then(({ state }) => {
+    if (state?.user) {
+      globalState.user = state.user;
+      globalState.apiKey = state.apiKey;
+    }
+  });
+})();
+
 const flushMetricsState = () => {
   const metrics = Object.assign({}, globalState.metrics);
   globalState.metrics = Object.assign({}, initialMetrics);
@@ -26,7 +35,7 @@ const flushMetricsState = () => {
   return metrics;
 };
 
-setTimeout(async () => {
+setInterval(async () => {
   const now = new Date();
   const state = flushMetricsState();
   if (!globalState.user || !globalState.apiKey) {
@@ -114,14 +123,19 @@ chrome.runtime.onInstalled.addListener(async () => {
   const contentScripts = chrome.runtime.getManifest().content_scripts || [];
 
   for (const tab of await chrome.tabs.query({})) {
-    if (!tab.id || !tab.url) continue; // probably chrome:// or similar
+    if (
+      !tab.id ||
+      !tab.url ||
+      excludedUrls.some((url) => tab.url?.includes(url))
+    )
+      continue;
     for (const cs of contentScripts) {
       chrome.scripting
         .executeScript({
           target: { tabId: tab.id as number },
           files: cs.js as string[],
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(tab.url, error));
     }
   }
 });

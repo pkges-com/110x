@@ -5,3 +5,5 @@ export enum Actions {
   LOGOUT = 'LOGOUT',
   USER_INTERACTION = 'USER_INTERACTION',
 }
+
+export const excludedUrls = ['https://chrome.google.com/webstore/'];

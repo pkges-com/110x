@@ -25,8 +25,12 @@ export class HundredTenX {
       return;
     }
 
-    vscode.workspace.onDidChangeTextDocument((e) => onUserInteraction());
-    vscode.window.onDidChangeActiveTextEditor((e) => onUserInteraction());
+    vscode.workspace.onDidChangeTextDocument((e) =>
+      onUserInteraction(this._context, this.updateState.bind(this))
+    );
+    vscode.window.onDidChangeActiveTextEditor((e) =>
+      onUserInteraction(this._context, this.updateState.bind(this))
+    );
     vscode.window.onDidChangeTextEditorVisibleRanges((e) =>
       onUserInteraction(this._context, this.updateState.bind(this))
     );
