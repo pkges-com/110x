@@ -22,5 +22,5 @@ export default function App() {
     };
   }, []);
 
-  return <div className="px-2 py-1 text-sm text-gray-500">110x 🚀</div>;
+  return null;
 }
