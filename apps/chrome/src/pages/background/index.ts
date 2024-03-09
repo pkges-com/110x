@@ -16,7 +16,7 @@ type MetricsState = typeof initialMetrics;
 const globalState = {
   user: null,
   apiKey: null,
-  metrics: initialMetrics,
+  metrics: Object.assign({}, initialMetrics),
 };
 
 (() => {
