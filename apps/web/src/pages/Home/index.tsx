@@ -25,14 +25,36 @@ const EmptyState = () => (
   </div>
 );
 
+const calculateHumanTimeSpend = (minutes: number) => {
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  if (hours === 0) {
+    return `${remainingMinutes} ${remainingMinutes > 1 ? 'minutes' : 'minute'}`;
+  }
+
+  return `${hours} ${
+    hours > 1 ? 'hours' : 'hour'
+  } and ${remainingMinutes} minutes`;
+};
+
 export default function Home({ ...props }: HomeProps) {
   const { data, isLoading, error } = useMetricStats();
 
   return (
     <Page {...props}>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Error: {error.message}</div>}
-      {data && data.length === 0 && <EmptyState />}
+      {!data && isLoading && <div>Loading...</div>}
+      {!isLoading && error && <div>Error: {error.message}</div>}
+      {data && data.total_minutes === 0 && <EmptyState />}
+      {data && data.total_minutes > 0 && (
+        <div>
+          <p className="text-lg">
+            You have been productive for{' '}
+            <b>{calculateHumanTimeSpend(data.total_minutes)}</b>
+            &nbsp;today
+          </p>
+        </div>
+      )}
     </Page>
   );
 }
