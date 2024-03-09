@@ -2,12 +2,16 @@ import { BASE_URL } from './const';
 import { Metric } from './types';
 
 export const publishMetrics = async (token: string, body: Metric) => {
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), 5000);
+
   const res = await fetch(BASE_URL + '/metrics', {
     method: 'POST',
     headers: {
       Authorization: token,
       'Content-Type': 'application/json',
     },
+    signal: controller.signal,
     body: JSON.stringify(body),
   });
 
