@@ -38,7 +38,7 @@ const flushMetricsState = () => {
 setInterval(async () => {
   const now = new Date();
   const state = flushMetricsState();
-  if (!globalState.user || !globalState.apiKey) {
+  if (!globalState.user || !globalState.apiKey || !state.active) {
     return;
   }
 
@@ -112,7 +112,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
       return true;
     case Actions.USER_INTERACTION:
-      console.log('interaction', message);
+      globalState.metrics.active = true;
       return true;
     default:
       break;
