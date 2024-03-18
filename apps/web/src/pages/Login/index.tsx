@@ -34,7 +34,7 @@ export default function Login({ ...props }: SettingsProps) {
           simple as a single click to login
         </CardContent>
         <CardFooter className="flex justify-end">
-          <form action={LOGIN_URL} method="GET">
+          <form action={LOGIN_URL} method="POST">
             <Button>A Nice Login Button</Button>
           </form>
         </CardFooter>
