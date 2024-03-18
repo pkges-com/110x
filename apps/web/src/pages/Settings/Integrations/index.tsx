@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { FaRegCopy } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { useAuthStore } from '@/stores/auth';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 
 const Integration = ({ integration }: { integration: IntegrationType }) => {
@@ -36,7 +36,6 @@ const Integration = ({ integration }: { integration: IntegrationType }) => {
 
 export const Integrations = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const copyRef = useRef();
   const token = useAuthStore((state) => state.token);
 
   const onCopy = () => {
