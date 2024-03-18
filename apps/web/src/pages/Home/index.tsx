@@ -1,5 +1,5 @@
 import Page from '@/components/Page';
-import emptyState from '@/assets/empty-state.svg';
+import emptyState from '/public/empty-state.svg';
 import { Link } from 'react-router-dom';
 import { useMetricStats } from './hooks';
 
