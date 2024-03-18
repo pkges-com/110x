@@ -9,7 +9,7 @@ const EmptyState = () => (
   <div className="flex flex-col items-center justify-center h-full w-full">
     <div
       className="flex flex-col justify-center items-center min-w-[400px] min-h-[430px] bg-center bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${emptyState})` }}
+      style={{ backgroundImage: `url("${emptyState}")` }}
     >
       <h2 className="text-2xl font-normal text-white">No metrics yet</h2>
       <p className="text-center mt-4">
