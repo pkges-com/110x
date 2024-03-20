@@ -6,7 +6,11 @@
   "license": "MIT",
   "scripts": {
     "build": "vite build",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build-pack": "pnpm build && rm -rf 110x-extention.zip && zip -r 110x-extention.zip dist/"
+  },
+  "icons": {
+    "128": "logo.png"
   },
   "dependencies": {
     "react": "^18.2.0",
