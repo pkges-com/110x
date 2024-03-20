@@ -25,6 +25,7 @@
     ]
   },
   "scripts": {
+    "vscode:publish": "vsce publish --no-dependencies",
     "vscode:prepublish": "pnpm run package",
     "build": "webpack",
     "watch": "webpack --watch",
